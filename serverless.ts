@@ -16,7 +16,7 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
     },
-    iamRoleStatements:[
+    iamRoleStatements: [
       {
         Effect: "Allow",
         Action: ["dynamodb:*"],
@@ -29,6 +29,7 @@ const serverlessConfiguration: AWS = {
       }
     ]
   },
+  package: { individually: false, include: ["./src/templates/**"] },
   // import the function via paths
   functions: {
     generateCertificate: {
@@ -52,7 +53,6 @@ const serverlessConfiguration: AWS = {
       }]
     },
   },
-  package: { individually: true },
   custom: {
     esbuild: {
       bundle: true,
